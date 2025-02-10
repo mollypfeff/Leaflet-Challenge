@@ -5,7 +5,7 @@ let defaultmap = L.tileLayer(
       attribution:
         'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)',
     });
-  
+//----------------------------------------------------
 //adding other toggleable maps
 
 //oceanbase layer
@@ -39,12 +39,12 @@ var myMap = L.map("map", {
 });
 
 
-//add the default map to the mpa
+//add the default map to the map
 defaultmap.addTo(myMap);
 
 //--------------------------------------------------------------
 
-//adding the tectonic plates and making them toggleable
+//adding the tectonic plates (they will be made toggleable at the Layer Control portion of the code, below)
 
 //creating a layergroup to hold the tectonic plate data
 let tectonicplates = new L.layerGroup();
@@ -109,7 +109,8 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geoj
         return{
           opacity: 1,
           fillOpacity: 1,
-          fillColor: dataColor(feature.geometry.coordinates[2]), //use index 2 to indicate the depth
+          fillColor: dataColor(feature.geometry.coordinates[2]), //use index 2 to indicate the depth, 
+          // which runs through the dataColor function to yield the color
           color: "000000", //making the outline of the circles black
           radius: radiusSize(feature.properties.mag), //calling the magnitude to plug into the radiusSize function
           weight: 1, //makes sure lines aren't too thick
@@ -120,7 +121,7 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geoj
 
       //add the geoJSON data to the earthquake data layer we created
       L.geoJson(earthquakeData, {
-        //make each feature a marker that's on our map
+        //make each feature a (circular) marker on the map
         pointToLayer: function(feature, latLng){
           return L.circleMarker(latLng);
         },
