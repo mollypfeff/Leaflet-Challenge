@@ -14,18 +14,16 @@ let Esri_OceanBasemap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest
 	maxZoom: 13
 });
 
-//darkmap layer
-let Stadia_AlidadeSmoothDark = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.{ext}', {
-	minZoom: 0,
-	maxZoom: 20,
-	attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-	ext: 'png'
+//labelled layer
+let Esri_NatGeoWorldMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; National Geographic, Esri, DeLorme, NAVTEQ, UNEP-WCMC, USGS, NASA, ESA, METI, NRCAN, GEBCO, NOAA, iPC',
+	maxZoom: 16
 });
 
 // Then add the 'basemap' tile layer to the map.
 let basemaps = {
   OceanBase : Esri_OceanBasemap,
-  DarkMap : Stadia_AlidadeSmoothDark,
+  NatGeo : Esri_NatGeoWorldMap,
   Default: defaultmap
 };
 
@@ -35,7 +33,7 @@ var myMap = L.map("map", {
     40.7, -94.5
   ],
   zoom: 5,
-  layers: [defaultmap, Esri_OceanBasemap, Stadia_AlidadeSmoothDark]
+  layers: [defaultmap, Esri_OceanBasemap, Esri_NatGeoWorldMap]
 });
 
 
