@@ -33,7 +33,7 @@ var myMap = L.map("map", {
     40.7, -94.5
   ],
   zoom: 5,
-  layers: [defaultmap, Esri_OceanBasemap, Esri_NatGeoWorldMap]
+  layers: [defaultmap]
 });
 
 
